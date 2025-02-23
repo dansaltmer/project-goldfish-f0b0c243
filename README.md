@@ -7,7 +7,7 @@ Currently running at [chat.rak.gg](https://chat.rak.gg)
 # Progress
 
 - ~~Stub out UI~~
-- Sort some authentication, probably google login
+- ~~Sort some authentication, probably google login~~
 - Create db / rest api
 - Figure out websockets
 - Create ws api / event consumer
@@ -23,3 +23,9 @@ Aiming for a full serverless realtime application by using:
 - A lambda c# trigger from new rows in dynamo db to trigger websocket messages to the clients.
 
 ![image](/docs/goldfish.drawio.png)
+
+# Interface
+
+Current version is fully static and using clientside google login. UI is still stubbed out.
+
+![image](/docs/stub-ui-screenshot.png)

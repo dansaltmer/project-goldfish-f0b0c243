@@ -1,19 +1,18 @@
 import React from "react";
-import { List, ListItem, Typography } from "@mui/material";
+import { List, ListItem } from "@mui/material";
+import FeedNavHeader from "./feed-nav-header";
 import FeedNavGroup from "./feed-nav-group";
 import FeedNavGroupItem from "./feed-nav-group-item";
+import FeedNavFooter from "./feed-nav-footer";
 
-const FeedNav = ({}) => (
+interface FeedNavProps {
+  user?: GoldfishAuthentication;
+}
+
+const FeedNav = ({ user }: FeedNavProps) => (
   <nav>
-    <div className="nav-header">
-      <Typography variant="h5" fontWeight="bold">
-        project goldfish
-      </Typography>
-      <Typography color="secondary.dark" fontWeight="bold">
-        ws poc / ds
-      </Typography>
-    </div>
-    <List disablePadding={true}>
+    <FeedNavHeader />
+    <List disablePadding={true} style={{ flexGrow: "1" }}>
       <ListItem disableGutters={true}>
         <FeedNavGroup name="Intro">
           <FeedNavGroupItem selected name="welcome" />
@@ -22,6 +21,13 @@ const FeedNav = ({}) => (
         </FeedNavGroup>
       </ListItem>
     </List>
+    {user && (
+      <FeedNavFooter
+        name={user.name}
+        avatar={user.avatar}
+        subheader={user.email}
+      />
+    )}
   </nav>
 );
 
