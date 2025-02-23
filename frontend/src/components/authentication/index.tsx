@@ -15,7 +15,7 @@ const parseUser = ({
   const claims = JSON.parse(atob(credential!.split(".")[1]));
   return {
     token: credential!,
-    name: `${claims.given_name} ${claims.family_name[0]}`,
+    name: `${claims.given_name} ${claims.family_name[0]}.`,
     email: claims.email,
     avatar: claims.picture,
     exp: claims.exp,
