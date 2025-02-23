@@ -1,4 +1,5 @@
-﻿using Amazon.DynamoDBv2.Model;
+﻿using Amazon.DynamoDBv2.DocumentModel;
+using Amazon.DynamoDBv2.Model;
 using System.Globalization;
 using System.Text.Json;
 
@@ -36,6 +37,25 @@ public class MessageDto
         }
 
         return item;
+    }
+
+    public static MessageDto FromDocument(Document doc)
+    {
+        var message = new MessageDto
+        {
+            Id = doc["message_id"],
+            ChannelId = doc["channel_id"],
+            Timestamp = DateTime.Parse(doc["timestamp"]),
+            Profile = JsonSerializer.Deserialize<ProfileDto>(doc["profile"])!,
+            Text = doc["text"],
+        };
+
+        if (doc.ContainsKey("media"))
+        {
+            message.Media = JsonSerializer.Deserialize<MediaDto>(doc["media"]);
+        }
+
+        return message;
     }
 }
 

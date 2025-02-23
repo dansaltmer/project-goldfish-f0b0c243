@@ -13,9 +13,9 @@ public static class MessageEndpoints
         return builder;
     }
 
-    private static async Task GetChannelMessagesAsync([FromServices] IMessageStore messageStore, [FromRoute]string channel)
+    private static Task<IList<MessageDto>> GetChannelMessagesAsync([FromServices] IMessageStore messageStore, [FromRoute]string channel)
     {
-        throw new NotImplementedException();
+        return messageStore.GetMessagesAsync(channel);
     }
 
     private static async Task<MessageDto> PostChannelMessageAsync([FromServices] IMessageStore messageStore, [FromRoute] string channel)
@@ -34,7 +34,6 @@ public static class MessageEndpoints
         };
 
         await messageStore.PutMessageAsync(newMessage);
-
         return newMessage;
     }
 }
