@@ -1,5 +1,16 @@
 import React, { ReactNode } from "react";
-import { List, ListSubheader, ListItem, Typography } from "@mui/material";
+import {
+  List,
+  ListSubheader,
+  ListItem,
+  Typography,
+  styled,
+} from "@mui/material";
+
+const StyledSubheader = styled(ListSubheader)(({ theme }) => ({
+  backgroundColor: "transparent",
+  color: theme.palette.secondary.dark,
+}));
 
 interface FeedNavGroupProps {
   name: string;
@@ -11,11 +22,11 @@ const FeedNavGroup = ({ name, children }: FeedNavGroupProps) => (
     sx={{ width: "100%" }}
     disablePadding={true}
     subheader={
-      <ListSubheader color="inherit">
+      <StyledSubheader color="inherit">
         <Typography fontWeight="bold" variant="h6">
           {name}
         </Typography>
-      </ListSubheader>
+      </StyledSubheader>
     }
   >
     {children}

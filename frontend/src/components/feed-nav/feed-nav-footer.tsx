@@ -4,7 +4,7 @@ import { Avatar, CardHeader } from "@mui/material";
 interface FeedNavFooterProps {
   name: string;
   subheader: string;
-  avatar: string;
+  avatar?: string;
 }
 
 const FeedNavFooter = ({ name, subheader, avatar }: FeedNavFooterProps) => (

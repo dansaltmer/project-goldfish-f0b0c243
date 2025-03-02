@@ -4,9 +4,10 @@ import FeedNavHeader from "./feed-nav-header";
 import FeedNavGroup from "./feed-nav-group";
 import FeedNavGroupItem from "./feed-nav-group-item";
 import FeedNavFooter from "./feed-nav-footer";
+import { User } from "oidc-client-ts";
 
 interface FeedNavProps {
-  user?: GoldfishAuthentication;
+  user: User;
 }
 
 const FeedNav = ({ user }: FeedNavProps) => (
@@ -21,13 +22,11 @@ const FeedNav = ({ user }: FeedNavProps) => (
         </FeedNavGroup>
       </ListItem>
     </List>
-    {user && (
-      <FeedNavFooter
-        name={user.name}
-        avatar={user.avatar}
-        subheader={user.email}
-      />
-    )}
+    <FeedNavFooter
+      name={user.profile.name ?? user.profile.email!}
+      avatar={user.profile.picture}
+      subheader={user.profile.email!}
+    />
   </nav>
 );
 

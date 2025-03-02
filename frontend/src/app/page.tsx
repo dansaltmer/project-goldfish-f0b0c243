@@ -1,20 +1,32 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import FeedNavigation from "@/components/feed-nav";
 import FeedView from "@/components/feed-view";
-import Authentication from "@/components/authentication";
+import Login from "@/components/login";
+import { useAuth } from "react-oidc-context";
 
 const Home = ({}) => {
-  const [user, setUser] = useState<GoldfishAuthentication | null>(null);
+  const auth = useAuth();
 
-  if (!user) {
-    return <Authentication onSuccess={(x) => setUser(x)} />;
+  // Strip auth code exchange once finished
+  useEffect(() => {
+    if (auth.isAuthenticated) {
+      window.history.replaceState(null, "", "/");
+    }
+  }, [auth.isAuthenticated]);
+
+  if (!auth.isAuthenticated) {
+    return <Login />;
+  }
+
+  if (auth.error) {
+    return <div>Error... {JSON.stringify(auth.error)}</div>;
   }
 
   return (
     <div className="container">
-      <FeedNavigation user={user} />
+      <FeedNavigation user={auth.user!} />
       <FeedView />
     </div>
   );

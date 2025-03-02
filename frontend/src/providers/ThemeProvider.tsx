@@ -13,15 +13,8 @@ const theme = createTheme({
     },
   },
 
+  // try and replace with styled
   components: {
-    MuiListSubheader: {
-      styleOverrides: {
-        root: ({ theme }) => ({
-          backgroundColor: "transparent",
-          color: theme.palette.secondary.dark,
-        }),
-      },
-    },
     MuiListItemButton: {
       styleOverrides: {
         root: ({ theme }) => ({
@@ -43,10 +36,12 @@ const theme = createTheme({
   },
 });
 
-interface ChatAppThemeProps {
+interface GoldfishThemeProps {
   children: ReactNode;
 }
 
-export default function ChatAppTheme({ children }: ChatAppThemeProps) {
+const GoldfishThemeProvider = ({ children }: GoldfishThemeProps) => {
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
-}
+};
+
+export default GoldfishThemeProvider;

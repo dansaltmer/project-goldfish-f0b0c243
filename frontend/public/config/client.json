@@ -1,0 +1,9 @@
+{
+  "auth": {
+    "authority": "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_EQNO4s05B",
+    "client_id": "7teae7e08qkl379rjn42p5u5jj",
+    "redirect_uri": "http://localhost:3000",
+    "response_type": "code",
+    "scope": "email openid"
+  }
+}

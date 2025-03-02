@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { Geist, Geist_Mono } from "next/font/google";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import ThemeProvider from "./theme";
+import AuthProvider from "../providers/AuthProvider";
+import ThemeProvider from "../providers/ThemeProvider";
+import ConfigProvider from "../providers/ConfigProvider";
 import "./globals.css";
-
-// Could move to config, but its client side, so per build anyway.
-const clientId =
-  "1092886426735-66e2jfruka1r27tojcqlmfs3qbknh8c5.apps.googleusercontent.com";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,19 +21,21 @@ export const metadata: Metadata = {
   description: "AWS WebSocket POC App",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+interface RootLayoutProps {
   children: React.ReactNode;
-}>) {
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <ThemeProvider>
-        <GoogleOAuthProvider clientId={clientId}>
-          <body className={`${geistSans.variable} ${geistMono.variable}`}>
-            <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
-          </body>
-        </GoogleOAuthProvider>
+        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+          <ConfigProvider>
+            <AuthProvider>
+              <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+            </AuthProvider>
+          </ConfigProvider>
+        </body>
       </ThemeProvider>
     </html>
   );
