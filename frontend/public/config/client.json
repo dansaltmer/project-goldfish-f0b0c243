@@ -4,6 +4,6 @@
     "client_id": "7teae7e08qkl379rjn42p5u5jj",
     "redirect_uri": "http://localhost:3000",
     "response_type": "code",
-    "scope": "email openid"
+    "scope": "email openid goldfish.api/api.access"
   }
 }

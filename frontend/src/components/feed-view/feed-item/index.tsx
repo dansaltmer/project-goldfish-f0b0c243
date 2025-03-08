@@ -14,22 +14,18 @@ interface FeedItemProps {
   time: string;
   name: string;
   avatar?: string;
-  image?: string;
-  iframe?: string;
+  media?: FeedMedia;
   children: string;
 }
 
-const Item = ({
-  time,
-  name,
-  avatar,
-  image,
-  iframe,
-  children,
-}: FeedItemProps) => (
+const Item = ({ time, name, avatar, media, children }: FeedItemProps) => (
   <StyledCard elevation={4}>
-    {image && <FeedItemMedia component="img" src={image} />}
-    {iframe && <FeedItemMedia component="iframe" src={iframe} />}
+    {media && (
+      <FeedItemMedia
+        component={media.type == "image" ? "img" : media.type} // slightly different in my api
+        src={media.url}
+      />
+    )}
     <FeedItemText>{children}</FeedItemText>
     <FeedItemFooter name={name} time={time} avatar={avatar} />
   </StyledCard>

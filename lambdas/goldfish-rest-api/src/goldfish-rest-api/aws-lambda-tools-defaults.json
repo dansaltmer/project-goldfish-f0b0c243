@@ -8,7 +8,7 @@
   "profile": "default",
   "region": "eu-north-1",
   "configuration": "Release",
-  "s3-prefix": "goldfish-rest-api/",
-  "template": "serverless.template",
-  "template-parameters": ""
+  "function-architecture": "x86_64",
+  "function-runtime": "dotnet8",
+  "function-handler": "goldfish-rest-api"
 }

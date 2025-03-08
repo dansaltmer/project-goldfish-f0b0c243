@@ -16,5 +16,6 @@
     <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.405.26" />
     <PackageReference Include="AWSSDK.SSO" Version="3.7.400.99" />
     <PackageReference Include="AWSSDK.SSOOIDC" Version="3.7.400.100" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.13" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,9 @@
-﻿using Goldfish.RestApi.Models;
+﻿using Goldfish.RestApi.Extensions;
+using Goldfish.RestApi.Models.Database;
+using Goldfish.RestApi.Models.Request;
 using Goldfish.RestApi.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Goldfish.RestApi.Endpoints;
 
@@ -8,32 +11,38 @@ public static class MessageEndpoints
 {
     public static RouteGroupBuilder MapMessagesApi(this RouteGroupBuilder builder)
     {
-        builder.MapGet("/", GetChannelMessagesAsync);
-        builder.MapPost("/", PostChannelMessageAsync);
+        builder.MapGet("/", GetFeedMessagesAsync);
+        builder.MapPost("/", PostFeedMessageAsync);
         return builder;
     }
 
-    private static Task<IList<MessageDto>> GetChannelMessagesAsync([FromServices] IMessageStore messageStore, [FromRoute]string channel)
+    private static async Task<IResult> GetFeedMessagesAsync([FromServices] IMessageStore messageStore, [FromRoute]string feed)
     {
-        return messageStore.GetMessagesAsync(channel);
+        return Results.Ok(await messageStore.GetMessagesAsync(feed));
     }
 
-    private static async Task<MessageDto> PostChannelMessageAsync([FromServices] IMessageStore messageStore, [FromRoute] string channel)
+    private static async Task<IResult> PostFeedMessageAsync([FromServices] IMessageStore messageStore, ClaimsPrincipal user, [FromRoute] string feed, [FromBody] PostMessageRequest request)
     {
-        var newMessage = new MessageDto
+        if (!request.IsMessageValid())
         {
-            ChannelId = channel,
+            return Results.BadRequest();
+        }
+
+        var newMessage = new FeedMessageEntity
+        {
+            FeedId = feed,
             Timestamp = DateTime.UtcNow,
-            Profile = new ProfileDto
+            Profile = new UserProfile
             {
-                // Todo: take from validated token
-                Avatar = "https://lh3.googleusercontent.com/a/ACg8ocIkYojdEDw8QyXsqptd32bcxpwr5UbydVX8WP7pIKgPd40XSZrJ=s96-c",
-                Name = "fake dan"
+                Id = user.GetId(),
+                Name = user.GetName(),
+                Avatar = user.GetAvatar()
             },
-            Text = "Bacon ipsum dolor amet swine shankle capicola biltong jowl filet mignon pig shank kielbasa chuck pork belly. Chuck pork belly tail turducken capicola shank. Short loin bacon rump shank, meatloaf frankfurter salami swine shankle. Meatball alcatra hamburger, pork jowl tail boudin tenderloin capicola tongue biltong."
+            Media = request.GetMediaDto(),
+            Text = request.Message
         };
 
         await messageStore.PutMessageAsync(newMessage);
-        return newMessage;
+        return Results.Ok(newMessage);
     }
 }

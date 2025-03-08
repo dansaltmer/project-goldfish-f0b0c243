@@ -1,5 +1,6 @@
 import React from "react";
 import { Avatar, Stack, Typography } from "@mui/material";
+import FeedItemTimestamp from "./feed-item-timestamp";
 
 interface FeedItemFooterProps {
   name: string;
@@ -20,7 +21,7 @@ const FeedItemFooter = ({ name, time, avatar }: FeedItemFooterProps) => (
       color="secondary.light"
       sx={{ lineHeight: "24px" }}
     >
-      {time}
+      <FeedItemTimestamp timestamp={time} />
     </Typography>
   </Stack>
 );
