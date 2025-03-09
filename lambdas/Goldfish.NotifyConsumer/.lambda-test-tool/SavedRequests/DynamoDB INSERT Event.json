@@ -1,0 +1,120 @@
+{
+    "Records": [
+        {
+            "EventSourceArn": "arn:aws:dynamodb:eu-north-1:418272777215:table/goldfish-messages/stream/2025-03-09T16:07:48.991",
+            "AwsRegion": "eu-north-1",
+            "Dynamodb": {
+                "ApproximateCreationDateTime": "2025-03-09T16:14:02Z",
+                "Keys": {
+                    "message_id": {
+                        "B": null,
+                        "BOOL": null,
+                        "BS": null,
+                        "L": null,
+                        "M": null,
+                        "N": null,
+                        "NS": null,
+                        "NULL": null,
+                        "S": "aa31cf87-1640-4fbb-ac67-7cb9fcc399cd",
+                        "SS": null
+                    },
+                    "feed_id": {
+                        "B": null,
+                        "BOOL": null,
+                        "BS": null,
+                        "L": null,
+                        "M": null,
+                        "N": null,
+                        "NS": null,
+                        "NULL": null,
+                        "S": "welcome",
+                        "SS": null
+                    }
+                },
+                "NewImage": {
+                    "profile": {
+                        "B": null,
+                        "BOOL": null,
+                        "BS": null,
+                        "L": null,
+                        "M": null,
+                        "N": null,
+                        "NS": null,
+                        "NULL": null,
+                        "S": "{\"Id\":\"347884f8-8041-70b9-50e2-cdc896130c4e\",\"Name\":\"Timmy\",\"Avatar\":\"https://www.w3schools.com/howto/img_avatar.png\"}",
+                        "SS": null
+                    },
+                    "message_id": {
+                        "B": null,
+                        "BOOL": null,
+                        "BS": null,
+                        "L": null,
+                        "M": null,
+                        "N": null,
+                        "NS": null,
+                        "NULL": null,
+                        "S": "aa31cf87-1640-4fbb-ac67-7cb9fcc399cd",
+                        "SS": null
+                    },
+                    "media": {
+                        "B": null,
+                        "BOOL": null,
+                        "BS": null,
+                        "L": null,
+                        "M": null,
+                        "N": null,
+                        "NS": null,
+                        "NULL": null,
+                        "S": "{\"Type\":\"iframe\",\"Url\":\"https://www.youtube.com/embed/Wk_P6SDkQQ0?si=wduv9K8uK_CQhKfv\"}",
+                        "SS": null
+                    },
+                    "text": {
+                        "B": null,
+                        "BOOL": null,
+                        "BS": null,
+                        "L": null,
+                        "M": null,
+                        "N": null,
+                        "NS": null,
+                        "NULL": null,
+                        "S": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                        "SS": null
+                    },
+                    "feed_id": {
+                        "B": null,
+                        "BOOL": null,
+                        "BS": null,
+                        "L": null,
+                        "M": null,
+                        "N": null,
+                        "NS": null,
+                        "NULL": null,
+                        "S": "welcome",
+                        "SS": null
+                    },
+                    "timestamp": {
+                        "B": null,
+                        "BOOL": null,
+                        "BS": null,
+                        "L": null,
+                        "M": null,
+                        "N": null,
+                        "NS": null,
+                        "NULL": null,
+                        "S": "2025-03-09T16:14:02.7547582Z",
+                        "SS": null
+                    }
+                },
+                "OldImage": null,
+                "SequenceNumber": "5087500000000008150574108",
+                "SizeBytes": 501,
+                "StreamViewType": "NEW_AND_OLD_IMAGES"
+            },
+            "EventID": "f226a9609474d25aee8f3499e0115b32",
+            "EventName": "INSERT",
+            "EventSource": "aws:dynamodb",
+            "EventVersion": "1.1",
+            "UserIdentity": null
+        }
+    ]
+}

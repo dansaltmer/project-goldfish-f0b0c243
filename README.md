@@ -10,11 +10,12 @@ Currently running at [goldfish.adonalsium.com](https://goldfish.adonalsium.com)
 - ~~Sort some authentication, probably google login~~
   - ~~Replace google login with cognito~~
   - ~~Environment configuration~~
-  - ~~Switch to access token and customise using lambda triggers ~~
+  - ~~Switch to access token and customise using lambda triggers~~
 - ~~Create db / rest api~~
   - Hook UI into the post message endpoint
-- Figure out websockets
-- Create ws api / event consumer
+- ~~Figure out websockets~~
+- ~~Create ws api / event consumer~~
+  - Hook UI into websockets
 
 # Serverless Architecture
 
